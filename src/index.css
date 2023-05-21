@@ -15,7 +15,8 @@ select {
 	letter-spacing: -0.02px;
 	padding-right: 1rem;
 	border-radius: 8px;
-	&:focus {
-		outline: none;
-	}
+}
+
+select:focus {
+	border: 1px solid #b1b4bb;
 }

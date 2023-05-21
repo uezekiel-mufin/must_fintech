@@ -1,12 +1,12 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable react/jsx-no-duplicate-props */
 import { useState } from 'react';
 // eslint-disable-next-line react/prop-types
-const TableBody = ({ membersData, setSelectedMembers }) => {
-	const [members, setMembers] = useState(membersData);
+const TableBody = ({ pageItems, setPageItems, setSelectedMembers }) => {
 	const [checked, setChecked] = useState(false);
 
 	const handleSelect = (id) => {
-		const newData = members.map((item) => {
+		const newData = pageItems.map((item) => {
 			if (item.id === id) {
 				return {
 					...item,
@@ -15,19 +15,19 @@ const TableBody = ({ membersData, setSelectedMembers }) => {
 			}
 			return item;
 		});
-		setMembers(newData);
+		setPageItems(newData);
 		setSelectedMembers(newData.filter((item) => item.selected === true));
 	};
 
 	const handleSelectAll = (checked) => {
 		setChecked(!checked);
-		const newData = members.map((item) => {
+		const newData = pageItems.map((item) => {
 			return {
 				...item,
 				selected: checked ? false : true,
 			};
 		});
-		setMembers(newData);
+		setPageItems(newData);
 		setSelectedMembers(newData.filter((item) => item.selected === true));
 	};
 
@@ -51,37 +51,43 @@ const TableBody = ({ membersData, setSelectedMembers }) => {
 						</tr>
 					</thead>
 					<tbody className='bg-white divide-y divide-gray-200'>
-						{members.map((member, index) => (
-							<tr key={member.id} className={`${member.selected === true ? 'bg-[#F9F9FB]' : ''}`}>
-								<td className='px-6 py-1  whitespace-nowrap'>
-									<input type='checkbox' className='form-checkbox checked:bg-[#dde0e5]' checked={member.selected} onChange={() => handleSelect(member.id)} />
-								</td>
-								<td className='px-6 py-4 align-middle whitespace-nowrap'>
-									<div className='text-sm text-[#222222] font-medium leading-[18px]'>{index + 1}</div>
-								</td>
-								<td className='px-6 py-4 align-middle whitespace-nowrap'>
-									<div className='text-sm text-[#222222] font-medium leading-[18px]'>{member.existingType}</div>
-								</td>
-								<td className='px-6 py-4 align-middle capitalize whitespace-nowrap'>
-									<div className='text-sm text-[#222222] font-medium leading-[18px]'>{member.applicationType}</div>
-								</td>
-								<td className='px-6 py-4 align-middle whitespace-nowrap'>
-									<div className='text-sm text-[#222222] font-medium leading-[18px]'>{member.submittedDoc}</div>
-								</td>
-								<td className='px-6 py-4 align-middle whitespace-nowrap'>
-									<div className='text-sm text-[#222222] font-medium leading-[18px]'>{member.applicationDate}</div>
-								</td>
-								<td className='px-6 py-4 align-middle whitespace-nowrap'>
-									<div className={`text-sm leading-4 capitalize font-medium ${member.approvalStatus === 'approved' && 'text-[#166534]'} ${member.approvalStatus === 'rejected' && 'text-[#991B1B]'} ${member.approvalStatus === 'pending' && 'text-[#9A3412]'}`}>{member.approvalStatus}</div>
-								</td>
-								<td className='px-6 py-4 align-middle whitespace-nowrap'>
-									<div className='text-sm text-[#222222] font-medium leading-[18px]'>{member.reasons}</div>
-								</td>
-								<td className='px-6 py-4 align-middle whitespace-nowrap'>
-									<div className='text-sm text-[#222222] font-medium leading-[18px]'>{member.approvalDate}</div>
-								</td>
+						{pageItems.length < 1 ? (
+							<tr className='flex justify-center items-center'>
+								<td className='text-center'> No search results found</td>
 							</tr>
-						))}
+						) : (
+							pageItems.map((member) => (
+								<tr key={member.id} className={`${member.selected === true ? 'bg-[#F9F9FB]' : ''}`}>
+									<td className='px-6 py-1  whitespace-nowrap'>
+										<input type='checkbox' className='form-checkbox checked:bg-[#dde0e5]' checked={member.selected} onChange={() => handleSelect(member.id)} />
+									</td>
+									<td className='px-6 py-4 align-middle whitespace-nowrap'>
+										<div className='text-sm text-[#222222] font-medium leading-[18px]'>{member.id}</div>
+									</td>
+									<td className='px-6 py-4 align-middle whitespace-nowrap'>
+										<div className='text-sm text-[#222222] font-medium leading-[18px]'>{member.existingType}</div>
+									</td>
+									<td className='px-6 py-4 align-middle capitalize whitespace-nowrap'>
+										<div className='text-sm text-[#222222] font-medium leading-[18px]'>{member.applicationType}</div>
+									</td>
+									<td className='px-6 py-4 align-middle whitespace-nowrap'>
+										<div className='text-sm text-[#222222] font-medium leading-[18px]'>{member.submittedDoc}</div>
+									</td>
+									<td className='px-6 py-4 align-middle whitespace-nowrap'>
+										<div className='text-sm text-[#222222] font-medium leading-[18px]'>{member.applicationDate}</div>
+									</td>
+									<td className='px-6 py-4 align-middle whitespace-nowrap'>
+										<div className={`text-sm leading-4 capitalize font-medium ${member.approvalStatus === 'approved' && 'text-[#166534]'} ${member.approvalStatus === 'rejected' && 'text-[#991B1B]'} ${member.approvalStatus === 'pending' && 'text-[#9A3412]'}`}>{member.approvalStatus}</div>
+									</td>
+									<td className='px-6 py-4 align-middle whitespace-nowrap'>
+										<div className='text-sm text-[#222222] font-medium leading-[18px]'>{member.reasons}</div>
+									</td>
+									<td className='px-6 py-4 align-middle whitespace-nowrap'>
+										<div className='text-sm text-[#222222] font-medium leading-[18px]'>{member.approvalDate}</div>
+									</td>
+								</tr>
+							))
+						)}
 					</tbody>
 				</table>
 			</div>

@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-const TableHeader = ({ membersData, pending, selectedMembers }) => {
+const TableHeader = ({ membersData, setPageItems, pending, selectedMembers, itemsPerPage, setItemsPerPage }) => {
 	const approvalStatus = [
 		{
 			id: 1,
@@ -7,9 +7,50 @@ const TableHeader = ({ membersData, pending, selectedMembers }) => {
 		},
 		{
 			id: 2,
+			title: 'pending',
+		},
+		{
+			id: 3,
 			title: 'rejected',
 		},
 	];
+
+	const itemsToView = [
+		{
+			id: 1,
+			number: 10,
+		},
+		{
+			id: 2,
+			number: 20,
+		},
+		{
+			id: 3,
+			number: 30,
+		},
+	];
+
+	const sortByDate = [
+		{
+			id: 1,
+			title: 'Application date',
+		},
+		{
+			id: 2,
+			title: 'Approval date',
+		},
+	];
+
+	const handleNumberSort = (number) => {
+		setItemsPerPage(number);
+	};
+	const handleDateSort = (date) => {
+		console.log(date);
+	};
+	const handleApprovalSort = (approval) => {
+		console.log(approval);
+		setPageItems((prev) => membersData.filter((item) => item.approvalStatus === approval));
+	};
 	return (
 		<>
 			<section>
@@ -18,28 +59,31 @@ const TableHeader = ({ membersData, pending, selectedMembers }) => {
 						Application List <span className='text-[#5A616A]'> ({`${membersData.length} Members | ${pending} pending approval`})</span>
 					</p>
 					<div className=' flex items-center gap-1 '>
-						<select name='Approval Status' id='apprval_status'>
+						<select name='Approval Status' id='approval_status' onChange={(e) => handleApprovalSort(e.target.value)}>
+							<option disabled className='transition-all duration-300 ease-linear'>
+								Approval Status
+							</option>
 							{approvalStatus.map((item) => {
 								return (
-									<option key={item.id} value={item.title}>
+									<option key={item.id} value={item.title} className='transition-all duration-300 ease-linear'>
 										{item.title}
 									</option>
 								);
 							})}
 						</select>
-						<select name='Approval Status' id='apprval_status'>
-							{approvalStatus.map((item) => {
+						<select name='Approval Status' id='approval_status' onChange={(e) => handleNumberSort(e.target.value)}>
+							{itemsToView.map((item) => {
 								return (
-									<option key={item.id} value={item.title}>
-										{item.title}
+									<option key={item.id} value={item.number} className='transition-all duration-300 ease-linear'>
+										{`view ${item.number} items`}
 									</option>
 								);
 							})}
 						</select>
-						<select name='Approval Status' id='apprval_status'>
-							{approvalStatus.map((item) => {
+						<select name='Approval Status' id='approval_status' onChange={(e) => handleDateSort(e.target.value)}>
+							{sortByDate.map((item) => {
 								return (
-									<option key={item.id} value={item.title}>
+									<option key={item.id} value={item.title} className='transition-all duration-300 ease-linear'>
 										{item.title}
 									</option>
 								);
