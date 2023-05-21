@@ -9,7 +9,7 @@ const Table = () => {
 	return (
 		<>
 			<TableHeader membersData={membersData} pending={pending} selectedMembers={selectedMembers} />
-			<TableBody membersData={membersData} />
+			<TableBody membersData={membersData} setSelectedMembers={setSelectedMembers} />
 		</>
 	);
 };
