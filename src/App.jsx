@@ -1,14 +1,14 @@
 import './App.css';
 import Nav from './components/Nav';
 import Table from './components/Table';
-import TableHeader from './components/TableHeader';
 
 function App() {
 	return (
 		<>
-			<Nav />
-      <TableHeader/>
-      <Table/>
+			<main className='px-4 '>
+				<Nav />
+				<Table />
+			</main>
 		</>
 	);
 }

@@ -1,3 +1,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+select {
+	background: #fff;
+	color: #0b101a;
+	font-family: 'Pretendard';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 19px;
+	border: 1px solid #b1b4bb;
+	padding: 5px;
+	letter-spacing: -0.02px;
+	padding-right: 1rem;
+	border-radius: 8px;
+	&:focus {
+		outline: none;
+	}
+}
