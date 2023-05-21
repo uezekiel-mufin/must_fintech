@@ -38,7 +38,7 @@ const TableBody = ({ membersData, setSelectedMembers }) => {
 					<thead>
 						<tr className='bg-[#EEF0F4] divide-x-2 divide-gray-50'>
 							<th className='px-6 py-3 text-left text-xs text-[#222222] font-semibold uppercase tracking-wider'>
-								<input type='checkbox' checked={checked} onChange={() => handleSelectAll(checked)} />
+								<input type='checkbox' checked={checked} onChange={() => handleSelectAll(checked)} className='focus:ring-[#dde0e5] checked:bg-[#dde0e5] focus:ring-4' />
 							</th>
 							<th className='px-6 py-3 text-left text-xs text-[#222222] font-semibold uppercase tracking-wider'>No </th>
 							<th className='px-6 py-3 text-left text-xs font-medium text-[#222222] uppercase tracking-wider'>Existing Type 3</th>
@@ -54,7 +54,7 @@ const TableBody = ({ membersData, setSelectedMembers }) => {
 						{members.map((member, index) => (
 							<tr key={member.id} className={`${member.selected === true ? 'bg-[#F9F9FB]' : ''}`}>
 								<td className='px-6 py-1  whitespace-nowrap'>
-									<input type='checkbox' checked={member.selected} onChange={() => handleSelect(member.id)} />
+									<input type='checkbox' className='form-checkbox checked:bg-[#dde0e5]' checked={member.selected} onChange={() => handleSelect(member.id)} />
 								</td>
 								<td className='px-6 py-4 align-middle whitespace-nowrap'>
 									<div className='text-sm text-[#222222] font-medium leading-[18px]'>{index + 1}</div>
