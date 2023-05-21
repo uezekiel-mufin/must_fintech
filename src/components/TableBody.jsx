@@ -53,7 +53,9 @@ const TableBody = ({ pageItems, setPageItems, setSelectedMembers }) => {
 					<tbody className='bg-white divide-y divide-gray-200'>
 						{pageItems.length < 1 ? (
 							<tr className='flex justify-center items-center'>
-								<td className='text-center'> No search results found</td>
+								<td className='text-center'>
+									<div className='flex justify-center items-center'>No search results found</div>
+								</td>
 							</tr>
 						) : (
 							pageItems.map((member) => (

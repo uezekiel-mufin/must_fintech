@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-const TableHeader = ({ membersData, setPageItems, pending, selectedMembers, itemsPerPage, setItemsPerPage }) => {
+const TableHeader = ({ membersData, setPageItems, pending, selectedMembers, setItemsPerPage }) => {
 	const approvalStatus = [
 		{
 			id: 1,
@@ -18,15 +18,15 @@ const TableHeader = ({ membersData, setPageItems, pending, selectedMembers, item
 	const itemsToView = [
 		{
 			id: 1,
-			number: 10,
+			number: 2,
 		},
 		{
 			id: 2,
-			number: 20,
+			number: 4,
 		},
 		{
 			id: 3,
-			number: 30,
+			number: 6,
 		},
 	];
 
@@ -48,8 +48,8 @@ const TableHeader = ({ membersData, setPageItems, pending, selectedMembers, item
 		console.log(date);
 	};
 	const handleApprovalSort = (approval) => {
-		console.log(approval);
-		setPageItems((prev) => membersData.filter((item) => item.approvalStatus === approval));
+		const newData = membersData.filter((item) => item.approvalStatus === approval);
+		setPageItems(newData);
 	};
 	return (
 		<>
@@ -59,31 +59,31 @@ const TableHeader = ({ membersData, setPageItems, pending, selectedMembers, item
 						Application List <span className='text-[#5A616A]'> ({`${membersData.length} Members | ${pending} pending approval`})</span>
 					</p>
 					<div className=' flex items-center gap-1 '>
-						<select name='Approval Status' id='approval_status' onChange={(e) => handleApprovalSort(e.target.value)}>
+						<select name='Approval Status' id='approval_status' defaultValue='Approval Status' className='capitalize' onChange={(e) => handleApprovalSort(e.target.value)}>
 							<option disabled className='transition-all duration-300 ease-linear'>
 								Approval Status
 							</option>
 							{approvalStatus.map((item) => {
 								return (
-									<option key={item.id} value={item.title} className='transition-all duration-300 ease-linear'>
+									<option key={item.id} value={item.title} className='transition-all capitalize duration-300 ease-linear'>
 										{item.title}
 									</option>
 								);
 							})}
 						</select>
-						<select name='Approval Status' id='approval_status' onChange={(e) => handleNumberSort(e.target.value)}>
+						<select name='Approval Status' id='approval_status' className='capitalize' onChange={(e) => handleNumberSort(e.target.value)}>
 							{itemsToView.map((item) => {
 								return (
-									<option key={item.id} value={item.number} className='transition-all duration-300 ease-linear'>
+									<option key={item.id} value={item.number} className='transition-all capitalize duration-300 ease-linear'>
 										{`view ${item.number} items`}
 									</option>
 								);
 							})}
 						</select>
-						<select name='Approval Status' id='approval_status' onChange={(e) => handleDateSort(e.target.value)}>
+						<select name='Approval Status' id='approval_status' className='capitalize' onChange={(e) => handleDateSort(e.target.value)}>
 							{sortByDate.map((item) => {
 								return (
-									<option key={item.id} value={item.title} className='transition-all duration-300 ease-linear'>
+									<option key={item.id} value={item.title} className='transition-all capitalize duration-300 ease-linear'>
 										{item.title}
 									</option>
 								);
@@ -96,7 +96,7 @@ const TableHeader = ({ membersData, setPageItems, pending, selectedMembers, item
 				<h3 className='border py-1 text-white px-[16px] bg-[#2A3958] rounded-[10px]'>Registration</h3>
 				<div className='flex justify-between items-center gap-1'>
 					<p className='mr-3 text-[14px]'>{selectedMembers.length} Selected Member</p>
-					<select name='Approval Status' id='apprval_status' className='focus:outline-none'>
+					<select name='Approval Status' id='approval_status' className='capitalize focus:outline-none'>
 						{approvalStatus.map((item) => {
 							return (
 								<option key={item.id} value={item.title}>

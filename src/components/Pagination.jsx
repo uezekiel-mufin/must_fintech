@@ -5,7 +5,7 @@ const Pagination = ({ setPageItems, membersData, startCount, endCount, setStartC
 	const handleJump = (page) => {
 		setStartCount((prevStartCount) => page * itemsPerPage - itemsPerPage);
 		setEndCount((prevEndCount) => page * itemsPerPage);
-		setPageItems((prevMembersData) => membersData.slice(startCount, endCount));
+		setPageItems((prevMembersData) => pageItems.slice(startCount, endCount));
 		setCurrentPage(page);
 	};
 

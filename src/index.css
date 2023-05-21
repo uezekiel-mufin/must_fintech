@@ -19,4 +19,5 @@ select {
 
 select:focus {
 	border: 1px solid #b1b4bb;
+	outline: none;
 }
