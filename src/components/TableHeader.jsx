@@ -43,11 +43,13 @@ const sortByDate = [
 		title: 'Approval date',
 	},
 ];
-const TableHeader = ({ membersData, setPageItems, pending, selectedMembers, setItemsPerPage, setSelectedMembers }) => {
+const TableHeader = ({ setEndCount, startCount, data, setData, setPending, membersData, setPageItems, pending, selectedMembers, setItemsPerPage, setSelectedMembers }) => {
 	const [approvalStatusValue, setApprovalStatusValue] = useState('');
 
 	const handleNumberSort = (number) => {
-		setPageItems(membersData.slice(0, number));
+		setEndCount(startCount + number);
+		setItemsPerPage(number);
+		setPageItems(data.slice(startCount, startCount + number));
 	};
 	const handleDateSort = (date) => {
 		console.log(date);
@@ -71,6 +73,17 @@ const TableHeader = ({ membersData, setPageItems, pending, selectedMembers, setI
 				return item;
 			})
 		);
+		setData((prev) =>
+			prev.map((item) => {
+				if (selectedMembers.includes(item)) {
+					return { ...item, approvalStatus: status, selected: false };
+				}
+				return item;
+			})
+		);
+		if (approvalStatusValue === 'pending') {
+			setPending((prev) => prev + selectedMembers.length);
+		}
 		toast.success(`You have successfully updated the status of ${selectedMembers.length} ${selectedMembers.length > 1 ? 'members' : 'member'}`);
 		setSelectedMembers([]);
 	};

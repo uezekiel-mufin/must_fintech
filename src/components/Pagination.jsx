@@ -1,21 +1,22 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import { MdKeyboardDoubleArrowLeft, MdKeyboardDoubleArrowRight, MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md';
-const Pagination = ({ setPageItems, membersData, startCount, endCount, setStartCount, setEndCount, itemsPerPage, pageItems, currentPage, setCurrentPage, numOfPages }) => {
+const Pagination = ({ data, setPageItems, membersData, startCount, endCount, setStartCount, setEndCount, itemsPerPage, pageItems, currentPage, setCurrentPage, numOfPages }) => {
 	const handleJump = (page) => {
 		setStartCount((prevStartCount) => page * itemsPerPage - itemsPerPage);
 		setEndCount((prevEndCount) => page * itemsPerPage);
-		setPageItems((prevMembersData) => prevMembersData.slice(startCount, endCount));
+		setPageItems((prevMembersData) => data.slice(startCount, endCount));
 		setCurrentPage(page);
 	};
 
 	const handleNext = () => {
+		console.log(data);
 		if (currentPage === numOfPages) {
 			return;
 		}
 		setStartCount((prevStartCount) => prevStartCount + itemsPerPage);
 		setEndCount((prevEndCount) => prevEndCount + itemsPerPage);
-		setPageItems((prevMembersData) => prevMembersData.slice(startCount, endCount));
+		setPageItems((prevMembersData) => data.slice(startCount, endCount));
 		setCurrentPage((prevCurrentPage) => prevCurrentPage + 1);
 	};
 
@@ -25,7 +26,7 @@ const Pagination = ({ setPageItems, membersData, startCount, endCount, setStartC
 		}
 		setStartCount((prevStartCount) => prevStartCount - itemsPerPage);
 		setEndCount((prevEndCount) => prevEndCount - itemsPerPage);
-		setPageItems((prevMembersData) => prevMembersData.slice(startCount, endCount));
+		setPageItems((prevMembersData) => data.slice(startCount, endCount));
 		setCurrentPage((prevCurrentPage) => prevCurrentPage - 1);
 	};
 
