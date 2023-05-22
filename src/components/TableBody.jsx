@@ -2,7 +2,7 @@
 /* eslint-disable react/jsx-no-duplicate-props */
 import { useState } from 'react';
 // eslint-disable-next-line react/prop-types
-const TableBody = ({ pageItems, setPageItems, setSelectedMembers }) => {
+const TableBody = ({ pageItems, setPageItems, setSelectedMembers, membersData }) => {
 	const [checked, setChecked] = useState(false);
 
 	const handleSelect = (id) => {
@@ -21,7 +21,7 @@ const TableBody = ({ pageItems, setPageItems, setSelectedMembers }) => {
 
 	const handleSelectAll = (checked) => {
 		setChecked(!checked);
-		const newData = pageItems.map((item) => {
+		const newData = membersData.map((item) => {
 			return {
 				...item,
 				selected: checked ? false : true,
@@ -34,27 +34,27 @@ const TableBody = ({ pageItems, setPageItems, setSelectedMembers }) => {
 	return (
 		<div className='border-t mt-2'>
 			<div className='overflow-x-auto'>
-				<table className='min-w-full divide-y divide-gray-200'>
+				<table className='min-w-full divide-y font-pretendard divide-gray-200'>
 					<thead>
 						<tr className='bg-[#EEF0F4] divide-x-2 divide-gray-50'>
-							<th className='px-6 py-3 text-left text-xs text-[#222222] font-semibold uppercase tracking-wider'>
+							<th className='px-6 py-3 text-left text-base text-[#222222] font-semibold uppercase tracking-[0.04em]'>
 								<input type='checkbox' checked={checked} onChange={() => handleSelectAll(checked)} className='focus:ring-[#dde0e5] checked:bg-[#dde0e5] focus:ring-4' />
 							</th>
-							<th className='px-6 py-3 text-left text-xs text-[#222222] font-semibold uppercase tracking-wider'>No </th>
-							<th className='px-6 py-3 text-left text-xs font-medium text-[#222222] uppercase tracking-wider'>Existing Type 3</th>
-							<th className='px-6 py-3 text-left text-xs text-[#222222] font-semibold uppercase tracking-wider'>Application Type</th>
-							<th className='px-6 py-3 text-left text-xs text-[#222222] font-semibold uppercase tracking-wider'>Submitted Doc</th>
-							<th className='px-6 py-3 text-left text-xs text-[#222222] font-semibold uppercase tracking-wider'>Application Date</th>
-							<th className='px-6 py-3 text-left text-xs text-[#222222] font-semibold uppercase tracking-wider'>Application Status</th>
-							<th className='px-6 py-3 text-center text-xs text-[#222222] font-semibold uppercase tracking-wider'>Reasons for rejection</th>
-							<th className='px-6 py-3 text-left text-xs text-[#222222] font-semibold uppercase tracking-wider'>Approval Date</th>
+							<th className='px-6 py-3 text-left text-base text-[#222222] font-semibold uppercase tracking-[0.04em]'>No </th>
+							<th className='px-6 py-3 text-left text-base font-semibold text-[#222222] uppercase tracking-[0.04em] font-pretendard'>Existing Type</th>
+							<th className='px-6 py-3 text-left text-base text-[#222222] font-semibold uppercase tracking-[0.04em] font-pretendard'>Application Type</th>
+							<th className='px-6 py-3 text-left text-base text-[#222222] font-semibold uppercase tracking-[0.04em] font-pretendard'>Submitted Document</th>
+							<th className='px-6 py-3 text-left text-base text-[#222222] font-semibold uppercase tracking-[0.04em] font-pretendard'>Application Date</th>
+							<th className='px-6 py-3 text-left text-base text-[#222222] font-semibold uppercase tracking-[0.04em] font-pretendard'>Application Status</th>
+							<th className='px-6 py-3 text-center text-base text-[#222222] font-semibold uppercase tracking-[0.04em] font-pretendard'>Reasons for rejection</th>
+							<th className='px-6 py-3 text-left text-base text-[#222222] font-semibold uppercase tracking-[0.04em] font-pretendard'>Approval Date</th>
 						</tr>
 					</thead>
-					<tbody className='bg-white divide-y divide-gray-200'>
-						{pageItems.length < 1 ? (
+					<tbody className='bg-white divide-y relative divide-gray-200'>
+						{pageItems.length > 1 ? (
 							<tr className='flex justify-center items-center'>
-								<td className='text-center'>
-									<div className='flex justify-center items-center'>No search results found</div>
+								<td className='text-center ' colSpan={9}>
+									<div className='flex justify-center font-pretendard items-center w-full h-[300px]'>No search results found</div>
 								</td>
 							</tr>
 						) : (
@@ -63,28 +63,28 @@ const TableBody = ({ pageItems, setPageItems, setSelectedMembers }) => {
 									<td className='px-6 py-1  whitespace-nowrap'>
 										<input type='checkbox' className='form-checkbox checked:bg-[#dde0e5]' checked={member.selected} onChange={() => handleSelect(member.id)} />
 									</td>
-									<td className='px-6 py-4 align-middle whitespace-nowrap'>
+									<td className='px-6 font-pretendard py-4 align-middle whitespace-nowrap'>
 										<div className='text-sm text-[#222222] font-medium leading-[18px]'>{member.id}</div>
 									</td>
-									<td className='px-6 py-4 align-middle whitespace-nowrap'>
+									<td className='px-6 font-pretendard py-4 align-middle whitespace-nowrap'>
 										<div className='text-sm text-[#222222] font-medium leading-[18px]'>{member.existingType}</div>
 									</td>
-									<td className='px-6 py-4 align-middle capitalize whitespace-nowrap'>
+									<td className='px-6 font-pretendard py-4 align-middle capitalize whitespace-nowrap'>
 										<div className='text-sm text-[#222222] font-medium leading-[18px]'>{member.applicationType}</div>
 									</td>
-									<td className='px-6 py-4 align-middle whitespace-nowrap'>
-										<div className='text-sm text-[#222222] font-medium leading-[18px]'>{member.submittedDoc}</div>
+									<td className='px-6 font-pretendard py-4 align-middle whitespace-nowrap'>
+										<div className='text-sm text-[#222222] font-medium leading-[18px] border bg-[#EBEEF3] rounded-lg justify-center px-[17px] flex items-center py-[6px]'>{member.submittedDoc}</div>
 									</td>
-									<td className='px-6 py-4 align-middle whitespace-nowrap'>
+									<td className='px-6 font-pretendard py-4 align-middle whitespace-nowrap'>
 										<div className='text-sm text-[#222222] font-medium leading-[18px]'>{member.applicationDate}</div>
 									</td>
-									<td className='px-6 py-4 align-middle whitespace-nowrap'>
-										<div className={`text-sm leading-4 capitalize font-medium ${member.approvalStatus === 'approved' && 'text-[#166534]'} ${member.approvalStatus === 'rejected' && 'text-[#991B1B]'} ${member.approvalStatus === 'pending' && 'text-[#9A3412]'}`}>{member.approvalStatus}</div>
+									<td className='px-6 font-pretendard py-4 align-middle whitespace-nowrap'>
+										<div className={`text-sm rounded-[10px] flex justify-center items-center py-[2px] px-[10px] gap-[6px] leading-4 capitalize font-medium ${member.approvalStatus === 'approved' && 'text-[#166534] bg-[#DCFCE7]'} ${member.approvalStatus === 'rejected' && 'text-[#991B1B] bg-[#FEE2E2]'} ${member.approvalStatus === 'pending' && 'text-[#9A3412] bg-[#FFEDD5]'}`}>{member.approvalStatus}</div>
 									</td>
-									<td className='px-6 py-4 align-middle whitespace-nowrap'>
+									<td className='px-6 font-pretendard py-4 align-middle whitespace-nowrap'>
 										<div className='text-sm text-[#222222] font-medium leading-[18px]'>{member.reasons}</div>
 									</td>
-									<td className='px-6 py-4 align-middle whitespace-nowrap'>
+									<td className='px-6 font-pretendard py-4 align-middle whitespace-nowrap'>
 										<div className='text-sm text-[#222222] font-medium leading-[18px]'>{member.approvalDate}</div>
 									</td>
 								</tr>

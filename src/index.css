@@ -2,6 +2,58 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+	font-family: 'Pretendard-Regular';
+	src: url('/src/assets/fonts/Pretendard-Regular.otf') format('opentype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Pretendard-Bold';
+	src: url('./fonts/Pretendard-Bold.otf') format('opentype');
+	font-weight: bold;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Pretendard-Italic';
+	src: url('./fonts/Pretendard-Italic.otf') format('opentype');
+	font-weight: normal;
+	font-style: italic;
+}
+
+body,
+html,
+table,
+tr,
+td,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+div,
+span,
+main,
+section {
+	font-family: 'pretendard', sans-serif;
+}
+
+.font-regular {
+	font-family: 'Pretendard-Regular', sans-serif;
+}
+
+.font-bold {
+	font-family: 'Pretendard-Bold', sans-serif;
+}
+
+.font-italic {
+	font-family: 'Pretendard-Italic', sans-serif;
+}
+
 select {
 	background: #fff;
 	color: #0b101a;
