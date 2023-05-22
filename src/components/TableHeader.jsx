@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import StatusMoal from './statusModal';
 
 /* eslint-disable react/prop-types */
 const approvalStatus = [
@@ -45,6 +46,8 @@ const sortByDate = [
 ];
 const TableHeader = ({ setEndCount, startCount, data, setData, setPending, membersData, setPageItems, pending, selectedMembers, setItemsPerPage, setSelectedMembers }) => {
 	const [approvalStatusValue, setApprovalStatusValue] = useState('');
+	const [modalResponse, setModalResponse] = useState('');
+	const [showModal, setShowModal] = useState(false);
 
 	const handleNumberSort = (number) => {
 		setEndCount(startCount + number);
@@ -64,33 +67,38 @@ const TableHeader = ({ setEndCount, startCount, data, setData, setPending, membe
 		setApprovalStatusValue(approvalStatus[0].title);
 	}, []);
 
+	// function to handle the change of approval status
 	const handleChangeStatus = (status) => {
-		setPageItems((prev) =>
-			prev.map((item) => {
-				if (selectedMembers.includes(item)) {
-					return { ...item, approvalStatus: status, selected: false };
-				}
-				return item;
-			})
-		);
-		setData((prev) =>
-			prev.map((item) => {
-				if (selectedMembers.includes(item)) {
-					return { ...item, approvalStatus: status, selected: false };
-				}
-				return item;
-			})
-		);
-		if (approvalStatusValue === 'pending') {
-			setPending((prev) => prev + selectedMembers.length);
+		setShowModal(true);
+		if (modalResponse === 'Ok') {
+			setPageItems((prev) =>
+				prev.map((item) => {
+					if (selectedMembers.includes(item)) {
+						return { ...item, approvalStatus: status, selected: false };
+					}
+					return item;
+				})
+			);
+			setData((prev) =>
+				prev.map((item) => {
+					if (selectedMembers.includes(item)) {
+						return { ...item, approvalStatus: status, selected: false };
+					}
+					return item;
+				})
+			);
+			if (approvalStatusValue === 'pending') {
+				setPending((prev) => prev + selectedMembers.length);
+			}
+			toast.success(`You have successfully updated the status of ${selectedMembers.length} ${selectedMembers.length > 1 ? 'members' : 'member'}`);
+			setSelectedMembers([]);
 		}
-		toast.success(`You have successfully updated the status of ${selectedMembers.length} ${selectedMembers.length > 1 ? 'members' : 'member'}`);
-		setSelectedMembers([]);
 	};
 
 	return (
 		<>
 			<ToastContainer position='top-center' />
+			{!showModal && <StatusMoal selectedMembers={selectedMembers} />}
 			<section>
 				<form className='flex justify-between pt-[45px] pb-[12px] items-center box-border border-b border-[#D7D8DA] border-solid'>
 					<p className='text-[#0B101A] text-[20px] leading-[24px] font-semibold'>
