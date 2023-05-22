@@ -52,7 +52,7 @@ const TableBody = ({ pageItems, setPageItems, setSelectedMembers, membersData, s
 							<th className='px-6 py-3 text-left text-base text-[#222222] font-semibold uppercase tracking-[0.04em] font-pretendard'>Approval Date</th>
 						</tr>
 					</thead>
-					<tbody className='bg-white divide-y relative divide-gray-200'>
+					<tbody className='bg-white divide-y relative divide-gray-200 transition-all ease-linear duration-300'>
 						{pageItems.length < 1 ? (
 							<tr className='flex justify-center items-center'>
 								<td className='text-center ' colSpan={9}>

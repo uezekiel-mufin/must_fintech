@@ -96,15 +96,7 @@ const TableHeader = ({ membersData, setPageItems, pending, selectedMembers, setI
 								);
 							})}
 						</select>
-						<select name='Approval Status' id='approval_status' className='capitalize' onChange={(e) => handleNumberSort(e.target.value)}>
-							{itemsToView.map((item) => {
-								return (
-									<option key={item.id} value={item.number} className='transition-all capitalize duration-300 ease-linear'>
-										{`view ${item.number} items`}
-									</option>
-								);
-							})}
-						</select>
+
 						<select name='Approval Status' id='approval_status' className='capitalize' onChange={(e) => handleDateSort(e.target.value)}>
 							{sortByDate.map((item) => {
 								return (
@@ -114,11 +106,20 @@ const TableHeader = ({ membersData, setPageItems, pending, selectedMembers, setI
 								);
 							})}
 						</select>
+						<select name='Approval Status' id='approval_status' className='capitalize' onChange={(e) => handleNumberSort(e.target.value)}>
+							{itemsToView.map((item) => {
+								return (
+									<option key={item.id} value={item.number} className='transition-all capitalize duration-300 ease-linear'>
+										{`view ${item.number} items`}
+									</option>
+								);
+							})}
+						</select>
 					</div>
 				</form>
 			</section>
 			<section className='flex justify-between items-center mt-[12.37px]'>
-				<h3 className='border py-1 text-white px-[16px] bg-[#2A3958] rounded-[10px]'>Registration</h3>
+				<h3 className='border py-1 text-white px-[16px] bg-[#2A3958] rounded-[10px]'>Register</h3>
 				<div className='flex justify-between items-center gap-1'>
 					<p className='mr-3 text-[14px]'>{selectedMembers.length} Selected Member</p>
 					<select name='Approval Status' id='approval_status' onChange={(e) => setApprovalStatusValue(e.target.value)} className='capitalize focus:outline-none'>

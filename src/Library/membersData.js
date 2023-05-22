@@ -312,7 +312,7 @@ export const membersData = [
 		existingType: 'eligible',
 		applicationType: 'individual expertise',
 		submittedDoc: 'correct',
-		applicationDate: '2023-01-10 09:00:00',
+		applicationDate: '2023-01-29',
 		approvalStatus: 'approved',
 		reasons: '',
 		approvalDate: '2023-01-10 09:00:00',
