@@ -3,11 +3,12 @@
 import { useState } from 'react';
 // eslint-disable-next-line react/prop-types
 const TableBody = ({ pageItems, setPageItems, setSelectedMembers, membersData }) => {
-	const [checked, setChecked] = useState(false);
+	const [isChecked, setIsChecked] = useState(false);
 
 	const handleSelect = (id) => {
 		const newData = pageItems.map((item) => {
 			if (item.id === id) {
+				setIsChecked(!isChecked);
 				return {
 					...item,
 					selected: !item.selected,
@@ -19,12 +20,12 @@ const TableBody = ({ pageItems, setPageItems, setSelectedMembers, membersData })
 		setSelectedMembers(newData.filter((item) => item.selected === true));
 	};
 
-	const handleSelectAll = (checked) => {
-		setChecked(!checked);
+	const handleSelectAll = (isChecked) => {
+		setIsChecked(!isChecked);
 		const newData = membersData.map((item) => {
 			return {
 				...item,
-				selected: checked ? false : true,
+				selected: !isChecked,
 			};
 		});
 		setPageItems(newData);
@@ -38,7 +39,9 @@ const TableBody = ({ pageItems, setPageItems, setSelectedMembers, membersData })
 					<thead>
 						<tr className='bg-[#EEF0F4] divide-x-2 divide-gray-50'>
 							<th className='px-6 py-3 text-left text-base text-[#222222] font-semibold uppercase tracking-[0.04em]'>
-								<input type='checkbox' checked={checked} onChange={() => handleSelectAll(checked)} className='focus:ring-[#dde0e5] checked:bg-[#dde0e5] focus:ring-4' />
+								<label className='flex items-center space-x-2 cursor-pointer'>
+									<input type='checkbox' onChange={() => handleSelectAll(isChecked)} className='appearance-none h-4 w-4 rounded-[4px] border bg-white border-[#D7D8DA] checked:bg-[#DDE0E6] checked:border-[#D7D8DA] focus:outline-none shadow-sm hover:shadow-none' />
+								</label>
 							</th>
 							<th className='px-6 py-3 text-left text-base text-[#222222] font-semibold uppercase tracking-[0.04em]'>No </th>
 							<th className='px-6 py-3 text-left text-base font-semibold text-[#222222] uppercase tracking-[0.04em] font-pretendard'>Existing Type</th>
@@ -61,8 +64,11 @@ const TableBody = ({ pageItems, setPageItems, setSelectedMembers, membersData })
 							pageItems.map((member) => (
 								<tr key={member.id} className={`${member.selected === true ? 'bg-[#F9F9FB]' : ''}`}>
 									<td className='px-6 py-1  whitespace-nowrap'>
-										<input type='checkbox' className='form-checkbox checked:bg-[#dde0e5]' checked={member.selected} onChange={() => handleSelect(member.id)} />
+										<label className='flex items-center space-x-2 cursor-pointer'>
+											<input type='checkbox' checked={member.selected} onChange={() => handleSelect(member.id)} className='appearance-none bg-white h-4 w-4 rounded-[4px] border border-[#D7D8DA] checked:bg-[#DDE0E6] checked:border-[#D7D8DA] focus:outline-none shadow-sm hover:shadow-none' />
+										</label>
 									</td>
+
 									<td className='px-6 font-pretendard py-4 align-middle whitespace-nowrap'>
 										<div className='text-sm text-[#222222] font-medium leading-[18px]'>{member.id}</div>
 									</td>
