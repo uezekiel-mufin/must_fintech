@@ -2,13 +2,12 @@
 /* eslint-disable react/jsx-no-duplicate-props */
 import { useState } from 'react';
 // eslint-disable-next-line react/prop-types
-const TableBody = ({ pageItems, setPageItems, setSelectedMembers, membersData }) => {
+const TableBody = ({ pageItems, setPageItems, setSelectedMembers, membersData, startCount, endCount }) => {
 	const [isChecked, setIsChecked] = useState(false);
 
 	const handleSelect = (id) => {
 		const newData = pageItems.map((item) => {
 			if (item.id === id) {
-				setIsChecked(!isChecked);
 				return {
 					...item,
 					selected: !item.selected,
@@ -21,14 +20,14 @@ const TableBody = ({ pageItems, setPageItems, setSelectedMembers, membersData })
 	};
 
 	const handleSelectAll = (isChecked) => {
-		setIsChecked(!isChecked);
 		const newData = membersData.map((item) => {
 			return {
 				...item,
-				selected: !isChecked,
+				selected: !isChecked ? true : false,
 			};
 		});
-		setPageItems(newData);
+		setIsChecked(!isChecked);
+		setPageItems(newData.slice(startCount, endCount));
 		setSelectedMembers(newData.filter((item) => item.selected === true));
 	};
 
@@ -40,7 +39,7 @@ const TableBody = ({ pageItems, setPageItems, setSelectedMembers, membersData })
 						<tr className='bg-[#EEF0F4] divide-x-2 divide-gray-50'>
 							<th className='px-6 py-3 text-left text-base text-[#222222] font-semibold uppercase tracking-[0.04em]'>
 								<label className='flex items-center space-x-2 cursor-pointer'>
-									<input type='checkbox' onChange={() => handleSelectAll(isChecked)} className='appearance-none h-4 w-4 rounded-[4px] border bg-white border-[#D7D8DA] checked:bg-[#DDE0E6] checked:border-[#D7D8DA] focus:outline-none shadow-sm hover:shadow-none' />
+									<input type='checkbox' checked={isChecked} onChange={() => handleSelectAll(isChecked)} className='appearance-none h-4 w-4 rounded-[4px] border bg-white border-[#D7D8DA] checked:bg-[#DDE0E6] checked:border-[#D7D8DA] focus:outline-none shadow-sm hover:shadow-none' />
 								</label>
 							</th>
 							<th className='px-6 py-3 text-left text-base text-[#222222] font-semibold uppercase tracking-[0.04em]'>No </th>

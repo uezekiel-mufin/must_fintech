@@ -22,10 +22,11 @@ const Table = () => {
 	useEffect(() => {
 		setPageItems(membersData.slice(startCount, endCount));
 	}, [startCount, endCount]);
+
 	return (
 		<main className='mb-8'>
-			<TableHeader setItemsPerPage={setItemsPerPage} setPageItems={setPageItems} membersData={membersData} pending={pending} selectedMembers={selectedMembers} />
-			<TableBody pageItems={pageItems} membersData={membersData} setPageItems={setPageItems} setSelectedMembers={setSelectedMembers} />
+			<TableHeader setItemsPerPage={setItemsPerPage} itemsPerPage={itemsPerPage} setPageItems={setPageItems} membersData={membersData} pending={pending} selectedMembers={selectedMembers} />
+			<TableBody startCount={startCount} endCount={endCount} pageItems={pageItems} membersData={membersData} setPageItems={setPageItems} setSelectedMembers={setSelectedMembers} />
 			{numOfPages > 1 && <Pagination membersData={membersData} setPageItems={setPageItems} startCount={startCount} endCount={endCount} setStartCount={setStartCount} setEndCount={setEndCount} itemsPerPage={itemsPerPage} pageItems={pageItems} currentPage={currentPage} setCurrentPage={setCurrentPage} numOfPages={numOfPages} />}
 		</main>
 	);

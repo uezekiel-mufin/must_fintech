@@ -1,48 +1,51 @@
+import { useEffect, useState } from 'react';
+
 /* eslint-disable react/prop-types */
-const TableHeader = ({ membersData, setPageItems, pending, selectedMembers, setItemsPerPage }) => {
-	const approvalStatus = [
-		{
-			id: 1,
-			title: 'approved',
-		},
-		{
-			id: 2,
-			title: 'pending',
-		},
-		{
-			id: 3,
-			title: 'rejected',
-		},
-	];
+const approvalStatus = [
+	{
+		id: 1,
+		title: 'approved',
+	},
+	{
+		id: 2,
+		title: 'pending',
+	},
+	{
+		id: 3,
+		title: 'rejected',
+	},
+];
 
-	const itemsToView = [
-		{
-			id: 1,
-			number: 2,
-		},
-		{
-			id: 2,
-			number: 4,
-		},
-		{
-			id: 3,
-			number: 6,
-		},
-	];
+const itemsToView = [
+	{
+		id: 1,
+		number: 2,
+	},
+	{
+		id: 2,
+		number: 4,
+	},
+	{
+		id: 3,
+		number: 6,
+	},
+];
 
-	const sortByDate = [
-		{
-			id: 1,
-			title: 'Application date',
-		},
-		{
-			id: 2,
-			title: 'Approval date',
-		},
-	];
+const sortByDate = [
+	{
+		id: 1,
+		title: 'Application date',
+	},
+	{
+		id: 2,
+		title: 'Approval date',
+	},
+];
+const TableHeader = ({ membersData, setPageItems, pending, selectedMembers, setItemsPerPage, setSelectedMembers }) => {
+	const [approvalStatusValue, setApprovalStatusValue] = useState('');
 
 	const handleNumberSort = (number) => {
-		setItemsPerPage(number);
+		setPageItems(membersData.slice(0, number));
 	};
 	const handleDateSort = (date) => {
 		console.log(date);
@@ -51,6 +54,23 @@ const TableHeader = ({ membersData, setPageItems, pending, selectedMembers, setI
 		const newData = membersData.filter((item) => item.approvalStatus === approval);
 		setPageItems(newData);
 	};
+
+	useEffect(() => {
+		setItemsPerPage(itemsToView[0].number);
+	}, []);
+
+	const handleChangeStatus = (status) => {
+		setPageItems((prev) =>
+			prev.map((item) => {
+				if (selectedMembers.includes(item)) {
+					return { ...item, approvalStatus: status, selected: false };
+				}
+				return item;
+			})
+		);
+		setSelectedMembers([]);
+	};
+
 	return (
 		<>
 			<section>
@@ -96,7 +116,7 @@ const TableHeader = ({ membersData, setPageItems, pending, selectedMembers, setI
 				<h3 className='border py-1 text-white px-[16px] bg-[#2A3958] rounded-[10px]'>Registration</h3>
 				<div className='flex justify-between items-center gap-1'>
 					<p className='mr-3 text-[14px]'>{selectedMembers.length} Selected Member</p>
-					<select name='Approval Status' id='approval_status' className='capitalize focus:outline-none'>
+					<select name='Approval Status' id='approval_status' onChange={(e) => setApprovalStatusValue(e.target.value)} className='capitalize focus:outline-none'>
 						{approvalStatus.map((item) => {
 							return (
 								<option key={item.id} value={item.title}>
@@ -105,7 +125,9 @@ const TableHeader = ({ membersData, setPageItems, pending, selectedMembers, setI
 							);
 						})}
 					</select>
-					<button className='border py-1 text-white px-[16px] bg-[#2A3958] rounded-[10px]'>Save</button>
+					<button onClick={() => handleChangeStatus(approvalStatusValue)} className='border py-1 text-white px-[16px] bg-[#2A3958] rounded-[10px]'>
+						Save
+					</button>
 				</div>
 			</section>
 		</>

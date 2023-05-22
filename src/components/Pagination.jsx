@@ -5,16 +5,56 @@ const Pagination = ({ setPageItems, membersData, startCount, endCount, setStartC
 	const handleJump = (page) => {
 		setStartCount((prevStartCount) => page * itemsPerPage - itemsPerPage);
 		setEndCount((prevEndCount) => page * itemsPerPage);
-		setPageItems((prevMembersData) => pageItems.slice(startCount, endCount));
+		setPageItems((prevMembersData) => prevMembersData.slice(startCount, endCount));
 		setCurrentPage(page);
+	};
+
+	const handleNext = () => {
+		if (currentPage === numOfPages) {
+			return;
+		}
+		setStartCount((prevStartCount) => prevStartCount + itemsPerPage);
+		setEndCount((prevEndCount) => prevEndCount + itemsPerPage);
+		setPageItems((prevMembersData) => prevMembersData.slice(startCount, endCount));
+		setCurrentPage((prevCurrentPage) => prevCurrentPage + 1);
+	};
+
+	const handlePrev = () => {
+		if (currentPage === 1) {
+			return;
+		}
+		setStartCount((prevStartCount) => prevStartCount - itemsPerPage);
+		setEndCount((prevEndCount) => prevEndCount - itemsPerPage);
+		setPageItems((prevMembersData) => prevMembersData.slice(startCount, endCount));
+		setCurrentPage((prevCurrentPage) => prevCurrentPage - 1);
+	};
+
+	const handleDoubleNextJump = () => {
+		if (currentPage + 1 > numOfPages) {
+			return;
+		}
+		setStartCount((prevStartCount) => numOfPages * itemsPerPage - itemsPerPage);
+		setEndCount((prevEndCount) => numOfPages * itemsPerPage);
+		setPageItems((prevMembersData) => prevMembersData.slice(startCount, endCount));
+		setCurrentPage(numOfPages);
+	};
+
+	const handleDoublePrevJump = () => {
+		if (currentPage - 1 < 1) {
+			return;
+		}
+		setStartCount((prevStartCount) => 1 * itemsPerPage - itemsPerPage);
+		setEndCount((prevEndCount) => 1 * itemsPerPage);
+		setPageItems((prevMembersData) => prevMembersData.slice(startCount, endCount));
+		setCurrentPage(1);
 	};
 
 	return (
 		<div className='bg-[#F1F3F5] flex justify-center'>
 			<section className='flex'>
 				<span className='flex items-center'>
-					<MdKeyboardDoubleArrowLeft className='text-xl text-[#9599A1]  cursor-pointer' />
-					<MdKeyboardArrowLeft className='text-xl text-[#9599A1]  cursor-pointer' />
+					<MdKeyboardDoubleArrowLeft onClick={handleDoublePrevJump} className='text-xl text-[#9599A1]  cursor-pointer' />
+					<MdKeyboardArrowLeft onClick={handleNext} className='text-xl text-[#9599A1]  cursor-pointer' />
 				</span>
 				<div className='flex items-center mx-4 gap-1 p-[12px]'>
 					{
@@ -27,8 +67,8 @@ const Pagination = ({ setPageItems, membersData, startCount, endCount, setStartC
 					}
 				</div>
 				<span className='flex items-center'>
-					<MdKeyboardArrowRight className='text-xl text-[#9599A1]  cursor-pointer' />
-					<MdKeyboardDoubleArrowRight className='text-xl text-[#9599A1] cursor-pointer ' />
+					<MdKeyboardArrowRight onClick={handleNext} className='text-xl text-[#9599A1]  cursor-pointer' />
+					<MdKeyboardDoubleArrowRight onClick={handleDoubleNextJump} className='text-xl text-[#9599A1] cursor-pointer ' />
 				</span>
 			</section>
 		</div>
