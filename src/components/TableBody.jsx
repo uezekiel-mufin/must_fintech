@@ -51,7 +51,7 @@ const TableBody = ({ pageItems, setPageItems, setSelectedMembers, membersData })
 						</tr>
 					</thead>
 					<tbody className='bg-white divide-y relative divide-gray-200'>
-						{pageItems.length > 1 ? (
+						{pageItems.length < 1 ? (
 							<tr className='flex justify-center items-center'>
 								<td className='text-center ' colSpan={9}>
 									<div className='flex justify-center font-pretendard items-center w-full h-[300px]'>No search results found</div>
