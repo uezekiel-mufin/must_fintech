@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 /* eslint-disable react/prop-types */
 const approvalStatus = [
@@ -19,15 +21,15 @@ const approvalStatus = [
 const itemsToView = [
 	{
 		id: 1,
-		number: 2,
+		number: 5,
 	},
 	{
 		id: 2,
-		number: 4,
+		number: 10,
 	},
 	{
 		id: 3,
-		number: 6,
+		number: 15,
 	},
 ];
 
@@ -57,6 +59,7 @@ const TableHeader = ({ membersData, setPageItems, pending, selectedMembers, setI
 
 	useEffect(() => {
 		setItemsPerPage(itemsToView[0].number);
+		setApprovalStatusValue(approvalStatus[0].title);
 	}, []);
 
 	const handleChangeStatus = (status) => {
@@ -68,11 +71,13 @@ const TableHeader = ({ membersData, setPageItems, pending, selectedMembers, setI
 				return item;
 			})
 		);
+		toast.success(`You have successfully updated the status of ${selectedMembers.length} ${selectedMembers.length > 1 ? 'members' : 'member'}`);
 		setSelectedMembers([]);
 	};
 
 	return (
 		<>
+			<ToastContainer position='top-center' />
 			<section>
 				<form className='flex justify-between pt-[45px] pb-[12px] items-center box-border border-b border-[#D7D8DA] border-solid'>
 					<p className='text-[#0B101A] text-[20px] leading-[24px] font-semibold'>
