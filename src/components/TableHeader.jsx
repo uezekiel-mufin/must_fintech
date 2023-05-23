@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import StatusMoal from './statusModal';
+import AlertModal from './AlertModal';
 
 /* eslint-disable react/prop-types */
 const approvalStatus = [
@@ -48,6 +49,7 @@ const sortByDate = [
 const TableHeader = ({ setIsChecked, isChecked, setEndCount, startCount, data, setData, setPending, membersData, setPageItems, pending, selectedMembers, setItemsPerPage, setSelectedMembers, itemsPerPage }) => {
 	const [approvalStatusValue, setApprovalStatusValue] = useState('');
 	const [showModal, setShowModal] = useState(false);
+	const [successModal, setSuccessModal] = useState(false);
 	const [description, setDescription] = useState('');
 
 	// function to handle the sorting lists by number of items to view
@@ -103,6 +105,7 @@ const TableHeader = ({ setIsChecked, isChecked, setEndCount, startCount, data, s
 	// function to handle the change of approval status
 	const handleChange = (response) => {
 		setIsChecked(false);
+		console.log(response);
 		if (response === 'Confirm') {
 			setPageItems((prev) =>
 				prev.map((item) => {
@@ -130,6 +133,9 @@ const TableHeader = ({ setIsChecked, isChecked, setEndCount, startCount, data, s
 				toast.error('Please select a member');
 			}
 		}
+		if (response === 'Confirm') {
+			setSuccessModal(true);
+		}
 	};
 
 	return (
@@ -138,6 +144,11 @@ const TableHeader = ({ setIsChecked, isChecked, setEndCount, startCount, data, s
 			{showModal && (
 				<div className='animate-slide-in fixed top-0 left-0 z-10 right-0'>
 					<StatusMoal selectedMembers={selectedMembers} approvalStatusValue={approvalStatusValue} description={description} handleModalResponse={handleModalResponse} />
+				</div>
+			)}
+			{successModal && (
+				<div className='animate-slide-in fixed top-0 left-0 z-10 right-0'>
+					<AlertModal setSuccessModal={setSuccessModal} />
 				</div>
 			)}
 			<section>

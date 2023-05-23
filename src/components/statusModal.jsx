@@ -12,9 +12,9 @@ const StatusMoal = ({ selectedMembers, approvalStatusValue, description, handleM
 					</span>
 				</span>
 				<h3>{description}</h3>
-				{selectedMembers.length === 1 && selectedMembers[0].approvalStatus === approvalStatusValue ? (
+				{(selectedMembers.length === 1 && selectedMembers[0].approvalStatus === approvalStatusValue) || selectedMembers.length === 0 ? (
 					<div className='flex justify-center items-center gap-4'>
-						<button onClick={(e) => handleModalResponse(e.target.textContent)} className='flex items-center justify-center py-2 px-4 text-white bg-[#2a3958] rounded-[10px]  border-solid border'>
+						<button onClick={(e) => handleModalResponse(e.target.textContent)} className='flex items-center justify-center py-2 px-4 text-white bg-[#2a3958] w-[170px] rounded-[10px]  border-solid border'>
 							Ok
 						</button>
 					</div>
