@@ -2,11 +2,11 @@
 /* eslint-disable react/jsx-no-duplicate-props */
 import { useState } from 'react';
 // eslint-disable-next-line react/prop-types
-const TableBody = ({ setData, pageItems, setPageItems, setSelectedMembers, membersData, startCount, endCount }) => {
+const TableBody = ({ data, setData, pageItems, setPageItems, setSelectedMembers, membersData, startCount, endCount }) => {
 	const [isChecked, setIsChecked] = useState(false);
 
 	const handleSelect = (id) => {
-		const newData = pageItems.map((item) => {
+		const newData = data.map((item) => {
 			if (item.id === id) {
 				return {
 					...item,
@@ -55,9 +55,9 @@ const TableBody = ({ setData, pageItems, setPageItems, setSelectedMembers, membe
 					</thead>
 					<tbody className='bg-white divide-y relative divide-gray-200 transition-all ease-linear duration-300'>
 						{pageItems.length < 1 ? (
-							<tr className='flex justify-center items-center'>
+							<tr className='flex mb-80 justify-center items-center'>
 								<td className='text-center ' colSpan={9}>
-									<div className='flex justify-center font-pretendard items-center w-full h-[300px]'>No search results found</div>
+									<div className='flex justify-center absolute w-full h-[300px] top-0 left-0  font-pretendard items-center '>No search results found</div>
 								</td>
 							</tr>
 						) : (

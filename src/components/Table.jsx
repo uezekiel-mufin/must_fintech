@@ -25,7 +25,7 @@ const Table = () => {
 	}, [startCount, endCount]);
 
 	useEffect(() => {
-		setData(membersData);
+		setData((prev) => membersData);
 	}, []);
 
 	useEffect(() => {
@@ -35,7 +35,7 @@ const Table = () => {
 	return (
 		<main className='mb-8'>
 			<TableHeader setEndCount={setEndCount} startCount={startCount} pageItems={pageItems} data={data} setData={setData} setPending={setPending} setSelectedMembers={setSelectedMembers} setItemsPerPage={setItemsPerPage} itemsPerPage={itemsPerPage} setPageItems={setPageItems} membersData={membersData} pending={pending} selectedMembers={selectedMembers} />
-			<TableBody setData={setData} startCount={startCount} endCount={endCount} pageItems={pageItems} membersData={membersData} setPageItems={setPageItems} setSelectedMembers={setSelectedMembers} />
+			<TableBody data={data} setData={setData} startCount={startCount} endCount={endCount} pageItems={pageItems} membersData={membersData} setPageItems={setPageItems} setSelectedMembers={setSelectedMembers} />
 			{numOfPages > 1 && <Pagination data={data} membersData={membersData} setPageItems={setPageItems} startCount={startCount} endCount={endCount} setStartCount={setStartCount} setEndCount={setEndCount} itemsPerPage={itemsPerPage} pageItems={pageItems} currentPage={currentPage} setCurrentPage={setCurrentPage} numOfPages={numOfPages} />}
 		</main>
 	);

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useEffect, useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -49,32 +50,50 @@ const TableHeader = ({ setEndCount, startCount, data, setData, setPending, membe
 	const [modalResponse, setModalResponse] = useState('');
 	const [showModal, setShowModal] = useState(false);
 
+	// function to handle the sorting lists by number of items to view
 	const handleNumberSort = (number) => {
 		setEndCount(startCount + number);
 		setItemsPerPage(number);
 		setPageItems(data.slice(startCount, startCount + number));
 	};
+
+	// function to handle the sorting lists by application and approval date
 	const handleDateSort = (date) => {
 		console.log(date);
 	};
+
+	// function to handle the sorting lists by approval status
 	const handleApprovalSort = (approval) => {
 		const newData = membersData.filter((item) => item.approvalStatus === approval);
 		setPageItems(newData);
 	};
 
+	// set the default values for the select options
 	useEffect(() => {
 		setItemsPerPage(itemsToView[0].number);
 		setApprovalStatusValue(approvalStatus[0].title);
 	}, []);
 
-	// function to handle the change of approval status
+	// function to open the modal for approval
 	const handleChangeStatus = (status) => {
 		setShowModal(true);
-		if (modalResponse === 'Ok') {
+		setApprovalStatusValue(status);
+	};
+
+	// function to handle the response from the modal
+	const handleModalResponse = (response) => {
+		setModalResponse((prev) => response);
+		setShowModal(false);
+		handleChange(response);
+	};
+
+	// function to handle the change of approval status
+	const handleChange = (response) => {
+		if (response === 'Confirm') {
 			setPageItems((prev) =>
 				prev.map((item) => {
 					if (selectedMembers.includes(item)) {
-						return { ...item, approvalStatus: status, selected: false };
+						return { ...item, approvalStatus: approvalStatusValue, selected: false };
 					}
 					return item;
 				})
@@ -82,23 +101,28 @@ const TableHeader = ({ setEndCount, startCount, data, setData, setPending, membe
 			setData((prev) =>
 				prev.map((item) => {
 					if (selectedMembers.includes(item)) {
-						return { ...item, approvalStatus: status, selected: false };
+						return { ...item, approvalStatus: approvalStatusValue, selected: false };
 					}
 					return item;
 				})
 			);
+			console.log(data);
 			if (approvalStatusValue === 'pending') {
 				setPending((prev) => prev + selectedMembers.length);
 			}
-			toast.success(`You have successfully updated the status of ${selectedMembers.length} ${selectedMembers.length > 1 ? 'members' : 'member'}`);
-			setSelectedMembers([]);
+			if (selectedMembers.length >= 1) {
+				toast.success(`You have successfully updated the status of ${selectedMembers.length} ${selectedMembers.length > 1 ? 'members' : 'member'}`);
+				setSelectedMembers([]);
+			} else {
+				toast.error('Please select a member');
+			}
 		}
 	};
 
 	return (
 		<>
 			<ToastContainer position='top-center' />
-			{!showModal && <StatusMoal selectedMembers={selectedMembers} />}
+			{showModal && <StatusMoal selectedMembers={selectedMembers} handleModalResponse={handleModalResponse} />}
 			<section>
 				<form className='flex justify-between pt-[45px] pb-[12px] items-center box-border border-b border-[#D7D8DA] border-solid'>
 					<p className='text-[#0B101A] text-[20px] leading-[24px] font-semibold'>
