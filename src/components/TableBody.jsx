@@ -1,10 +1,7 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/jsx-no-duplicate-props */
-import { useState } from 'react';
 // eslint-disable-next-line react/prop-types
-const TableBody = ({ data, setData, pageItems, setPageItems, setSelectedMembers, membersData, startCount, endCount }) => {
-	const [isChecked, setIsChecked] = useState(false);
-
+const TableBody = ({ setIsChecked, isChecked, data, setData, pageItems, setPageItems, setSelectedMembers, membersData, startCount, endCount }) => {
 	const handleSelect = (id) => {
 		const newData = data.map((item) => {
 			if (item.id === id) {
@@ -26,10 +23,15 @@ const TableBody = ({ data, setData, pageItems, setPageItems, setSelectedMembers,
 				selected: !isChecked ? true : false,
 			};
 		});
-		setData((prev) => prev.map((item) => ({ ...item, selected: !isChecked ? true : false })));
+
+		if (!isChecked) {
+			setSelectedMembers(newData);
+		} else {
+			setSelectedMembers([]);
+		}
+		setData(newData);
 		setIsChecked(!isChecked);
 		setPageItems(newData.slice(startCount, endCount));
-		setSelectedMembers(newData.filter((item) => item.selected === true));
 	};
 
 	return (

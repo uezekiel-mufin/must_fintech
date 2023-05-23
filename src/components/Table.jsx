@@ -8,6 +8,7 @@ import Pagination from './Pagination';
 const Table = () => {
 	const [itemsPerPage, setItemsPerPage] = useState(5);
 	const [currentPage, setCurrentPage] = useState(1);
+	const [isChecked, setIsChecked] = useState(false);
 	const [startCount, setStartCount] = useState(0);
 	const [endCount, setEndCount] = useState(itemsPerPage);
 	const [pageItems, setPageItems] = useState([]);
@@ -34,8 +35,8 @@ const Table = () => {
 
 	return (
 		<main className='mb-8'>
-			<TableHeader setEndCount={setEndCount} startCount={startCount} pageItems={pageItems} data={data} setData={setData} setPending={setPending} setSelectedMembers={setSelectedMembers} setItemsPerPage={setItemsPerPage} itemsPerPage={itemsPerPage} setPageItems={setPageItems} membersData={membersData} pending={pending} selectedMembers={selectedMembers} />
-			<TableBody data={data} setData={setData} startCount={startCount} endCount={endCount} pageItems={pageItems} membersData={membersData} setPageItems={setPageItems} setSelectedMembers={setSelectedMembers} />
+			<TableHeader isChecked={isChecked} setIsChecked={setIsChecked} setEndCount={setEndCount} startCount={startCount} pageItems={pageItems} data={data} setData={setData} setPending={setPending} setSelectedMembers={setSelectedMembers} setItemsPerPage={setItemsPerPage} itemsPerPage={itemsPerPage} setPageItems={setPageItems} membersData={membersData} pending={pending} selectedMembers={selectedMembers} />
+			<TableBody isChecked={isChecked} setIsChecked={setIsChecked} data={data} setData={setData} startCount={startCount} endCount={endCount} pageItems={pageItems} membersData={membersData} setPageItems={setPageItems} setSelectedMembers={setSelectedMembers} />
 			{numOfPages > 1 && <Pagination data={data} membersData={membersData} setPageItems={setPageItems} startCount={startCount} endCount={endCount} setStartCount={setStartCount} setEndCount={setEndCount} itemsPerPage={itemsPerPage} pageItems={pageItems} currentPage={currentPage} setCurrentPage={setCurrentPage} numOfPages={numOfPages} />}
 		</main>
 	);

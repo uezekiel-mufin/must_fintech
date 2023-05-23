@@ -45,7 +45,7 @@ const sortByDate = [
 		title: 'Approval date',
 	},
 ];
-const TableHeader = ({ setEndCount, startCount, data, setData, setPending, membersData, setPageItems, pending, selectedMembers, setItemsPerPage, setSelectedMembers, itemsPerPage }) => {
+const TableHeader = ({ setIsChecked, isChecked, setEndCount, startCount, data, setData, setPending, membersData, setPageItems, pending, selectedMembers, setItemsPerPage, setSelectedMembers, itemsPerPage }) => {
 	const [approvalStatusValue, setApprovalStatusValue] = useState('');
 	const [showModal, setShowModal] = useState(false);
 
@@ -87,6 +87,7 @@ const TableHeader = ({ setEndCount, startCount, data, setData, setPending, membe
 
 	// function to handle the change of approval status
 	const handleChange = (response) => {
+		setIsChecked(false);
 		if (response === 'Confirm') {
 			setPageItems((prev) =>
 				prev.map((item) => {
