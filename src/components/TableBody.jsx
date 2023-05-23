@@ -10,7 +10,7 @@ const TableBody = ({ data, setData, pageItems, setPageItems, setSelectedMembers,
 			if (item.id === id) {
 				return {
 					...item,
-					selected: !item.selected,
+					selected: !item.selected ? true : false,
 				};
 			}
 			return item;

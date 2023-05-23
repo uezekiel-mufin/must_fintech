@@ -45,7 +45,7 @@ const sortByDate = [
 		title: 'Approval date',
 	},
 ];
-const TableHeader = ({ setEndCount, startCount, data, setData, setPending, membersData, setPageItems, pending, selectedMembers, setItemsPerPage, setSelectedMembers }) => {
+const TableHeader = ({ setEndCount, startCount, data, setData, setPending, membersData, setPageItems, pending, selectedMembers, setItemsPerPage, setSelectedMembers, itemsPerPage }) => {
 	const [approvalStatusValue, setApprovalStatusValue] = useState('');
 	const [showModal, setShowModal] = useState(false);
 
@@ -64,7 +64,7 @@ const TableHeader = ({ setEndCount, startCount, data, setData, setPending, membe
 	// function to handle the sorting lists by approval status
 	const handleApprovalSort = (approval) => {
 		const newData = membersData.filter((item) => item.approvalStatus === approval);
-		setPageItems(newData);
+		setData(newData);
 	};
 
 	// set the default values for the select options
@@ -96,7 +96,14 @@ const TableHeader = ({ setEndCount, startCount, data, setData, setPending, membe
 					return item;
 				})
 			);
-
+			setData((prev) =>
+				prev.map((item) => {
+					if (selectedMembers.includes(item)) {
+						return { ...item, approvalStatus: approvalStatusValue, selected: false };
+					}
+					return item;
+				})
+			);
 			if (approvalStatusValue === 'pending') {
 				setPending((prev) => prev + selectedMembers.filter((item) => item.approvalStatus !== 'pending').length);
 			}

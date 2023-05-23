@@ -12,7 +12,7 @@ const Table = () => {
 	const [endCount, setEndCount] = useState(itemsPerPage);
 	const [pageItems, setPageItems] = useState([]);
 	const [data, setData] = useState([]);
-	const numOfPages = Math.ceil(membersData.length / itemsPerPage);
+	const numOfPages = Math.ceil(data.length / itemsPerPage);
 	const [pending, setPending] = useState(membersData.filter((item) => item.approvalStatus === 'pending').length);
 	const [selectedMembers, setSelectedMembers] = useState(membersData.filter((item) => item.selected === true));
 
