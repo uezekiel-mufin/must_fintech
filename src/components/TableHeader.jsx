@@ -48,6 +48,7 @@ const sortByDate = [
 const TableHeader = ({ setIsChecked, isChecked, setEndCount, startCount, data, setData, setPending, membersData, setPageItems, pending, selectedMembers, setItemsPerPage, setSelectedMembers, itemsPerPage }) => {
 	const [approvalStatusValue, setApprovalStatusValue] = useState('');
 	const [showModal, setShowModal] = useState(false);
+	const [description, setDescription] = useState('');
 
 	// function to handle the sorting lists by number of items to view
 	const handleNumberSort = (number) => {
@@ -75,6 +76,20 @@ const TableHeader = ({ setIsChecked, isChecked, setEndCount, startCount, data, s
 
 	// function to open the modal for approval
 	const handleChangeStatus = (status) => {
+		if (selectedMembers.length === 0) {
+			setDescription('No selected applications');
+		}
+		if (selectedMembers.length === 1) {
+			if (status === selectedMembers[0].approvalStatus && status === 'approved') {
+				setDescription('This member has already been granted approval."');
+			} else if (status === selectedMembers[0].approvalStatus && status === 'rejected') {
+				setDescription('This member has already been rejected for approval."');
+			} else if (status !== selectedMembers[0].approvalStatus) {
+				setDescription(`Would you like to change the approval status of the selected item?`);
+			}
+		} else if (selectedMembers.length >= 1) {
+			setDescription(`Would you like to change the approval status of the selected ${selectedMembers.length} items?`);
+		}
 		setShowModal(true);
 		setApprovalStatusValue(status);
 	};
@@ -122,7 +137,7 @@ const TableHeader = ({ setIsChecked, isChecked, setEndCount, startCount, data, s
 			<ToastContainer position='top-center' />
 			{showModal && (
 				<div className='animate-slide-in fixed top-0 left-0 z-10 right-0'>
-					<StatusMoal selectedMembers={selectedMembers} handleModalResponse={handleModalResponse} />
+					<StatusMoal selectedMembers={selectedMembers} approvalStatusValue={approvalStatusValue} description={description} handleModalResponse={handleModalResponse} />
 				</div>
 			)}
 			<section>
