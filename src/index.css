@@ -73,3 +73,21 @@ select:focus {
 	border: 1px solid #b1b4bb;
 	outline: none;
 }
+
+@keyframes slide-in {
+	0% {
+		transform: translateY(-100%);
+		opacity: 0;
+	}
+
+	100% {
+		transform: translateY(0);
+		opacity: 1;
+	}
+}
+
+.animate-slide-in {
+	animation-name: slide-in;
+	animation-duration: 1s; /* You can adjust the duration as needed */
+	animation-fill-mode: both;
+}

@@ -112,7 +112,11 @@ const TableHeader = ({ setEndCount, startCount, data, setData, setPending, membe
 	return (
 		<>
 			<ToastContainer position='top-center' />
-			{showModal && <StatusMoal selectedMembers={selectedMembers} handleModalResponse={handleModalResponse} />}
+			{showModal && (
+				<div className='animate-slide-in fixed top-0 left-0 z-10 right-0'>
+					<StatusMoal selectedMembers={selectedMembers} handleModalResponse={handleModalResponse} />
+				</div>
+			)}
 			<section>
 				<form className='flex justify-between pt-[45px] pb-[12px] items-center box-border border-b border-[#D7D8DA] border-solid'>
 					<p className='text-[#0B101A] text-[20px] leading-[24px] font-semibold'>
