@@ -47,7 +47,6 @@ const sortByDate = [
 ];
 const TableHeader = ({ setEndCount, startCount, data, setData, setPending, membersData, setPageItems, pending, selectedMembers, setItemsPerPage, setSelectedMembers }) => {
 	const [approvalStatusValue, setApprovalStatusValue] = useState('');
-	const [modalResponse, setModalResponse] = useState('');
 	const [showModal, setShowModal] = useState(false);
 
 	// function to handle the sorting lists by number of items to view
@@ -82,7 +81,6 @@ const TableHeader = ({ setEndCount, startCount, data, setData, setPending, membe
 
 	// function to handle the response from the modal
 	const handleModalResponse = (response) => {
-		setModalResponse((prev) => response);
 		setShowModal(false);
 		handleChange(response);
 	};
@@ -92,23 +90,15 @@ const TableHeader = ({ setEndCount, startCount, data, setData, setPending, membe
 		if (response === 'Confirm') {
 			setPageItems((prev) =>
 				prev.map((item) => {
-					if (selectedMembers.includes(item)) {
+					if (selectedMembers.includes(item) && item.approvalStatus !== approvalStatusValue) {
 						return { ...item, approvalStatus: approvalStatusValue, selected: false };
 					}
 					return item;
 				})
 			);
-			setData((prev) =>
-				prev.map((item) => {
-					if (selectedMembers.includes(item)) {
-						return { ...item, approvalStatus: approvalStatusValue, selected: false };
-					}
-					return item;
-				})
-			);
-			console.log(data);
+
 			if (approvalStatusValue === 'pending') {
-				setPending((prev) => prev + selectedMembers.length);
+				setPending((prev) => prev + selectedMembers.filter((item) => item.approvalStatus !== 'pending').length);
 			}
 			if (selectedMembers.length >= 1) {
 				toast.success(`You have successfully updated the status of ${selectedMembers.length} ${selectedMembers.length > 1 ? 'members' : 'member'}`);

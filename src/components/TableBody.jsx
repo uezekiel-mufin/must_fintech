@@ -15,7 +15,7 @@ const TableBody = ({ data, setData, pageItems, setPageItems, setSelectedMembers,
 			}
 			return item;
 		});
-		setPageItems(newData);
+		setData(newData);
 		setSelectedMembers(newData.filter((item) => item.selected === true));
 	};
 
