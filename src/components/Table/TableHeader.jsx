@@ -131,12 +131,6 @@ const TableHeader = ({ setIsChecked, isChecked, setEndCount, startCount, data, s
 			if (approvalStatusValue === 'pending') {
 				setPending((prev) => prev + selectedMembers.filter((item) => item.approvalStatus !== 'pending').length);
 			}
-			if (selectedMembers.length >= 1) {
-				toast.success(`You have successfully updated the status of ${selectedMembers.length} ${selectedMembers.length > 1 ? 'members' : 'member'}`);
-				setSelectedMembers([]);
-			} else {
-				toast.error('Please select a member');
-			}
 		}
 		if (response === 'Confirm') {
 			setSuccessModal(true);
