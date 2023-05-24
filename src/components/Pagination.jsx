@@ -55,7 +55,7 @@ const Pagination = ({ data, setPageItems, membersData, startCount, endCount, set
 			<section className='flex'>
 				<span className='flex items-center'>
 					<MdKeyboardDoubleArrowLeft onClick={handleDoublePrevJump} className='text-xl text-[#9599A1]  cursor-pointer' />
-					<MdKeyboardArrowLeft onClick={handleNext} className='text-xl text-[#9599A1]  cursor-pointer' />
+					<MdKeyboardArrowLeft onClick={handlePrev} className='text-xl text-[#9599A1]  cursor-pointer' />
 				</span>
 				<div className='flex items-center mx-4 gap-1 p-[12px]'>
 					{
