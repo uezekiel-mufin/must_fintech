@@ -1,7 +1,5 @@
 /* eslint-disable no-unused-vars */
 import { useEffect, useState } from 'react';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import StatusMoal from '../statusModal';
 import AlertModal from '../AlertModal';
 
@@ -147,7 +145,6 @@ const TableHeader = ({ setIsChecked, isChecked, setEndCount, startCount, data, s
 
 	return (
 		<>
-			<ToastContainer position='top-center' />
 			{showModal && (
 				<div className='animate-slide-in fixed top-0 left-0 z-10 right-0'>
 					<StatusMoal selectedMembers={selectedMembers} approvalStatusValue={approvalStatusValue} description={description} handleModalResponse={handleModalResponse} />

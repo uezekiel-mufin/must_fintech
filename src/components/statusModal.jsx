@@ -1,12 +1,14 @@
 /* eslint-disable react/prop-types */
-import { MdErrorOutline, MdClose, MdOutlineCheckCircle } from 'react-icons/md';
+import { MdErrorOutline, MdClose } from 'react-icons/md';
 
 const StatusMoal = ({ selectedMembers, approvalStatusValue, description, handleModalResponse }) => {
 	return (
 		<main className='items-start h-screen flex justify-center  fixed top-0 p-8 backdrop-blur-sm z-10  left-0 right-0 bg-[rgba(0,0,0,0.2)]'>
 			<section className=' p-6 w-[350px] bg-white flex flex-col gap-8 rounded-[12px]'>
 				<span className='flex justify-between items-center'>
-					<span className={`bg-[#FEF0C7] border-[#FFFAEB] border-4 p-2 rounded-full ${approvalStatusValue === 'approved' && 'bg-[#D1FADF] '}  ${approvalStatusValue === 'rejected' && ''}  ${approvalStatusValue === 'pending' && ''}`}>{approvalStatusValue === 'approved' ? <MdOutlineCheckCircle className='text-[#039855] border-none' /> : <MdErrorOutline className='text-[#D46B08] border-none' />}</span>
+					<span className={`bg-[#FEF0C7] border-[#FFFAEB] border-4 p-1 rounded-full`}>
+						<MdErrorOutline className='text-[#D46B08] border-none' />
+					</span>
 					<span>
 						<MdClose className='text-[#667085] text-xl cursor-pointer' onClick={() => handleModalResponse('close')} />
 					</span>
