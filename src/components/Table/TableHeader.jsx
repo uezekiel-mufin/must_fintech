@@ -2,48 +2,10 @@
 import { useEffect, useState } from 'react';
 import StatusMoal from '../statusModal';
 import AlertModal from '../AlertModal';
+import { approvalStatus, itemsToView, sortByDate } from '../../Library/sortingData';
 
 /* eslint-disable react/prop-types */
-const approvalStatus = [
-	{
-		id: 1,
-		title: 'approved',
-	},
-	{
-		id: 2,
-		title: 'pending',
-	},
-	{
-		id: 3,
-		title: 'rejected',
-	},
-];
 
-const itemsToView = [
-	{
-		id: 1,
-		number: 5,
-	},
-	{
-		id: 2,
-		number: 10,
-	},
-	{
-		id: 3,
-		number: 15,
-	},
-];
-
-const sortByDate = [
-	{
-		id: 1,
-		title: 'Application date',
-	},
-	{
-		id: 2,
-		title: 'Approval date',
-	},
-];
 const TableHeader = ({ setIsChecked, isChecked, setEndCount, startCount, data, setData, setPending, membersData, setPageItems, pending, selectedMembers, setItemsPerPage, setSelectedMembers, itemsPerPage, setCurrentPage, setStartCount, endCount }) => {
 	const [approvalStatusValue, setApprovalStatusValue] = useState('');
 	const [showModal, setShowModal] = useState(false);
