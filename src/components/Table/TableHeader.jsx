@@ -2,8 +2,8 @@
 import { useEffect, useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import StatusMoal from './statusModal';
-import AlertModal from './AlertModal';
+import StatusMoal from '../statusModal';
+import AlertModal from '../AlertModal';
 
 /* eslint-disable react/prop-types */
 const approvalStatus = [
@@ -46,7 +46,7 @@ const sortByDate = [
 		title: 'Approval date',
 	},
 ];
-const TableHeader = ({ setIsChecked, isChecked, setEndCount, startCount, data, setData, setPending, membersData, setPageItems, pending, selectedMembers, setItemsPerPage, setSelectedMembers, itemsPerPage }) => {
+const TableHeader = ({ setIsChecked, isChecked, setEndCount, startCount, data, setData, setPending, membersData, setPageItems, pending, selectedMembers, setItemsPerPage, setSelectedMembers, itemsPerPage, setCurrentPage, setStartCount, endCount }) => {
 	const [approvalStatusValue, setApprovalStatusValue] = useState('');
 	const [showModal, setShowModal] = useState(false);
 	const [successModal, setSuccessModal] = useState(false);
@@ -56,6 +56,8 @@ const TableHeader = ({ setIsChecked, isChecked, setEndCount, startCount, data, s
 	const handleNumberSort = (number) => {
 		setEndCount(startCount + number);
 		setItemsPerPage(number);
+		setStartCount((prevStartCount) => 1 * itemsPerPage - itemsPerPage);
+		setEndCount((prevEndCount) => 1 * itemsPerPage);
 		setPageItems(data.slice(startCount, startCount + number));
 	};
 
@@ -67,7 +69,12 @@ const TableHeader = ({ setIsChecked, isChecked, setEndCount, startCount, data, s
 	// function to handle the sorting lists by approval status
 	const handleApprovalSort = (approval) => {
 		const newData = membersData.filter((item) => item.approvalStatus === approval);
+		setCurrentPage((prev) => 1);
 		setData(newData);
+		setStartCount((prevStartCount) => 1 * itemsPerPage - itemsPerPage);
+		setEndCount((prevEndCount) => 1 * itemsPerPage);
+		setPageItems((prevMembersData) => data.slice(startCount, endCount));
+		setCurrentPage(1);
 	};
 
 	// set the default values for the select options

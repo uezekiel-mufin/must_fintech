@@ -1,9 +1,9 @@
 /* eslint-disable no-unused-vars */
 import TableBody from './TableBody';
 import TableHeader from './TableHeader';
-import { membersData } from '../Library/membersData';
+import { membersData } from '../../Library/membersData';
 import { useEffect, useState } from 'react';
-import Pagination from './Pagination';
+import Pagination from '../Pagination';
 
 const Table = () => {
 	const [itemsPerPage, setItemsPerPage] = useState(5);
@@ -35,7 +35,7 @@ const Table = () => {
 
 	return (
 		<main className='mb-8'>
-			<TableHeader isChecked={isChecked} setIsChecked={setIsChecked} setEndCount={setEndCount} startCount={startCount} pageItems={pageItems} data={data} setData={setData} setPending={setPending} setSelectedMembers={setSelectedMembers} setItemsPerPage={setItemsPerPage} itemsPerPage={itemsPerPage} setPageItems={setPageItems} membersData={membersData} pending={pending} selectedMembers={selectedMembers} />
+			<TableHeader setStartCount={setStartCount} endCount={endCount} setCurrentPage={setCurrentPage} isChecked={isChecked} setIsChecked={setIsChecked} setEndCount={setEndCount} startCount={startCount} pageItems={pageItems} data={data} setData={setData} setPending={setPending} setSelectedMembers={setSelectedMembers} setItemsPerPage={setItemsPerPage} itemsPerPage={itemsPerPage} setPageItems={setPageItems} membersData={membersData} pending={pending} selectedMembers={selectedMembers} />
 			<TableBody isChecked={isChecked} setIsChecked={setIsChecked} data={data} setData={setData} startCount={startCount} endCount={endCount} pageItems={pageItems} membersData={membersData} setPageItems={setPageItems} setSelectedMembers={setSelectedMembers} />
 			{numOfPages > 1 && <Pagination data={data} membersData={membersData} setPageItems={setPageItems} startCount={startCount} endCount={endCount} setStartCount={setStartCount} setEndCount={setEndCount} itemsPerPage={itemsPerPage} pageItems={pageItems} currentPage={currentPage} setCurrentPage={setCurrentPage} numOfPages={numOfPages} />}
 		</main>
