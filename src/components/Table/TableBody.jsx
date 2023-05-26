@@ -2,6 +2,7 @@
 /* eslint-disable react/jsx-no-duplicate-props */
 // eslint-disable-next-line react/prop-types
 const TableBody = ({ setIsChecked, isChecked, data, setData, pageItems, setPageItems, setSelectedMembers, membersData, startCount, endCount }) => {
+	// Function to handle selection of each checkbox
 	const handleSelect = (id) => {
 		const newData = data.map((item) => {
 			if (item.id === id) {
@@ -16,6 +17,7 @@ const TableBody = ({ setIsChecked, isChecked, data, setData, pageItems, setPageI
 		setSelectedMembers(newData.filter((item) => item.selected === true));
 	};
 
+	// Function to handle selection of every checkbox on the page
 	const handleSelectAll = (isChecked) => {
 		const newData = membersData.map((item) => {
 			return {

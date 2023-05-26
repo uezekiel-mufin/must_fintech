@@ -2,7 +2,7 @@ export const membersData = [
 	{
 		id: 1,
 		existingType: 'eligible',
-		applicationType: 'individual expertise',
+		applicationType: 'Personal expertise',
 		submittedDoc: 'correct',
 		applicationDate: '2023-01-10 09:00:00',
 		approvalStatus: 'rejected',
@@ -13,7 +13,7 @@ export const membersData = [
 	{
 		id: 2,
 		existingType: 'eligible',
-		applicationType: 'individual expertise',
+		applicationType: 'Personal expertise',
 		submittedDoc: 'correct',
 		applicationDate: '2023-01-10 09:00:00',
 		approvalStatus: 'approved',
@@ -24,7 +24,7 @@ export const membersData = [
 	{
 		id: 3,
 		existingType: 'eligible',
-		applicationType: 'individual expertise',
+		applicationType: 'Income qualification',
 		submittedDoc: 'correct',
 		applicationDate: '2023-01-10 09:00:00',
 		approvalStatus: 'pending',
@@ -35,7 +35,7 @@ export const membersData = [
 	{
 		id: 4,
 		existingType: 'eligible',
-		applicationType: 'individual expertise',
+		applicationType: 'Personal expertise',
 		submittedDoc: 'correct',
 		applicationDate: '2023-01-10 09:00:00',
 		approvalStatus: 'rejected',
@@ -46,7 +46,7 @@ export const membersData = [
 	{
 		id: 5,
 		existingType: 'eligible',
-		applicationType: 'individual expertise',
+		applicationType: 'Personal expertise',
 		submittedDoc: 'correct',
 		applicationDate: '2023-01-10 09:00:00',
 		approvalStatus: 'approved',
@@ -57,7 +57,7 @@ export const membersData = [
 	{
 		id: 6,
 		existingType: 'eligible',
-		applicationType: 'individual expertise',
+		applicationType: 'Income qualification',
 		submittedDoc: 'correct',
 		applicationDate: '2023-01-10 09:00:00',
 		approvalStatus: 'pending',
@@ -68,7 +68,7 @@ export const membersData = [
 	{
 		id: 7,
 		existingType: 'eligible',
-		applicationType: 'individual expertise',
+		applicationType: 'Personal expertise',
 		submittedDoc: 'correct',
 		applicationDate: '2023-01-10 09:00:00',
 		approvalStatus: 'rejected',
@@ -79,7 +79,7 @@ export const membersData = [
 	{
 		id: 8,
 		existingType: 'eligible',
-		applicationType: 'individual expertise',
+		applicationType: 'Personal expertise',
 		submittedDoc: 'correct',
 		applicationDate: '2023-01-10 09:00:00',
 		approvalStatus: 'approved',
@@ -90,7 +90,7 @@ export const membersData = [
 	{
 		id: 9,
 		existingType: 'eligible',
-		applicationType: 'individual expertise',
+		applicationType: 'Income qualification',
 		submittedDoc: 'correct',
 		applicationDate: '2023-01-10 09:00:00',
 		approvalStatus: 'pending',
@@ -101,7 +101,7 @@ export const membersData = [
 	{
 		id: 10,
 		existingType: 'eligible',
-		applicationType: 'individual expertise',
+		applicationType: 'Personal expertise',
 		submittedDoc: 'correct',
 		applicationDate: '2023-01-10 09:00:00',
 		approvalStatus: 'rejected',
@@ -112,7 +112,7 @@ export const membersData = [
 	{
 		id: 11,
 		existingType: 'eligible',
-		applicationType: 'individual expertise',
+		applicationType: 'Personal expertise',
 		submittedDoc: 'correct',
 		applicationDate: '2023-01-10 09:00:00',
 		approvalStatus: 'approved',
@@ -123,7 +123,7 @@ export const membersData = [
 	{
 		id: 12,
 		existingType: 'eligible',
-		applicationType: 'individual expertise',
+		applicationType: 'Income qualification',
 		submittedDoc: 'correct',
 		applicationDate: '2023-01-10 09:00:00',
 		approvalStatus: 'pending',
@@ -134,7 +134,7 @@ export const membersData = [
 	{
 		id: 13,
 		existingType: 'eligible',
-		applicationType: 'individual expertise',
+		applicationType: 'Personal expertise',
 		submittedDoc: 'correct',
 		applicationDate: '2023-01-10 09:00:00',
 		approvalStatus: 'rejected',
@@ -145,7 +145,7 @@ export const membersData = [
 	{
 		id: 14,
 		existingType: 'eligible',
-		applicationType: 'individual expertise',
+		applicationType: 'Personal expertise',
 		submittedDoc: 'correct',
 		applicationDate: '2023-01-10 09:00:00',
 		approvalStatus: 'approved',
@@ -156,7 +156,7 @@ export const membersData = [
 	{
 		id: 15,
 		existingType: 'eligible',
-		applicationType: 'individual expertise',
+		applicationType: 'Income qualification',
 		submittedDoc: 'correct',
 		applicationDate: '2023-01-10 09:00:00',
 		approvalStatus: 'pending',
@@ -167,7 +167,7 @@ export const membersData = [
 	{
 		id: 16,
 		existingType: 'eligible',
-		applicationType: 'individual expertise',
+		applicationType: 'Personal expertise',
 		submittedDoc: 'correct',
 		applicationDate: '2023-01-10 09:00:00',
 		approvalStatus: 'rejected',
@@ -178,7 +178,7 @@ export const membersData = [
 	{
 		id: 17,
 		existingType: 'eligible',
-		applicationType: 'individual expertise',
+		applicationType: 'Personal expertise',
 		submittedDoc: 'correct',
 		applicationDate: '2023-01-10 09:00:00',
 		approvalStatus: 'approved',
@@ -189,7 +189,7 @@ export const membersData = [
 	{
 		id: 18,
 		existingType: 'eligible',
-		applicationType: 'individual expertise',
+		applicationType: 'Income qualification',
 		submittedDoc: 'correct',
 		applicationDate: '2023-01-10 09:00:00',
 		approvalStatus: 'pending',
@@ -200,7 +200,7 @@ export const membersData = [
 	{
 		id: 19,
 		existingType: 'eligible',
-		applicationType: 'individual expertise',
+		applicationType: 'Personal expertise',
 		submittedDoc: 'correct',
 		applicationDate: '2023-01-10 09:00:00',
 		approvalStatus: 'rejected',
@@ -211,7 +211,7 @@ export const membersData = [
 	{
 		id: 20,
 		existingType: 'eligible',
-		applicationType: 'individual expertise',
+		applicationType: 'Personal expertise',
 		submittedDoc: 'correct',
 		applicationDate: '2023-01-10 09:00:00',
 		approvalStatus: 'approved',
@@ -222,7 +222,7 @@ export const membersData = [
 	{
 		id: 21,
 		existingType: 'eligible',
-		applicationType: 'individual expertise',
+		applicationType: 'Income qualification',
 		submittedDoc: 'correct',
 		applicationDate: '2023-01-10 09:00:00',
 		approvalStatus: 'pending',
@@ -233,7 +233,7 @@ export const membersData = [
 	{
 		id: 22,
 		existingType: 'eligible',
-		applicationType: 'individual expertise',
+		applicationType: 'Personal expertise',
 		submittedDoc: 'correct',
 		applicationDate: '2023-01-10 09:00:00',
 		approvalStatus: 'rejected',
@@ -244,7 +244,7 @@ export const membersData = [
 	{
 		id: 23,
 		existingType: 'eligible',
-		applicationType: 'individual expertise',
+		applicationType: 'Personal expertise',
 		submittedDoc: 'correct',
 		applicationDate: '2023-01-10 09:00:00',
 		approvalStatus: 'approved',
@@ -255,7 +255,7 @@ export const membersData = [
 	{
 		id: 24,
 		existingType: 'eligible',
-		applicationType: 'individual expertise',
+		applicationType: 'Income qualification',
 		submittedDoc: 'correct',
 		applicationDate: '2023-01-10 09:00:00',
 		approvalStatus: 'pending',
@@ -266,7 +266,7 @@ export const membersData = [
 	{
 		id: 25,
 		existingType: 'eligible',
-		applicationType: 'individual expertise',
+		applicationType: 'Personal expertise',
 		submittedDoc: 'correct',
 		applicationDate: '2023-01-10 09:00:00',
 		approvalStatus: 'rejected',
@@ -277,7 +277,7 @@ export const membersData = [
 	{
 		id: 26,
 		existingType: 'eligible',
-		applicationType: 'individual expertise',
+		applicationType: 'Personal expertise',
 		submittedDoc: 'correct',
 		applicationDate: '2023-01-10 09:00:00',
 		approvalStatus: 'approved',
@@ -288,7 +288,7 @@ export const membersData = [
 	{
 		id: 27,
 		existingType: 'eligible',
-		applicationType: 'individual expertise',
+		applicationType: 'Income qualification',
 		submittedDoc: 'correct',
 		applicationDate: '2023-01-10 09:00:00',
 		approvalStatus: 'pending',
@@ -299,7 +299,7 @@ export const membersData = [
 	{
 		id: 28,
 		existingType: 'eligible',
-		applicationType: 'individual expertise',
+		applicationType: 'Personal expertise',
 		submittedDoc: 'correct',
 		applicationDate: '2023-01-10 09:00:00',
 		approvalStatus: 'rejected',
@@ -310,7 +310,7 @@ export const membersData = [
 	{
 		id: 29,
 		existingType: 'eligible',
-		applicationType: 'individual expertise',
+		applicationType: 'Personal expertise',
 		submittedDoc: 'correct',
 		applicationDate: '2023-01-29',
 		approvalStatus: 'approved',
@@ -321,7 +321,7 @@ export const membersData = [
 	{
 		id: 30,
 		existingType: 'eligible',
-		applicationType: 'individual expertise',
+		applicationType: 'Income qualification',
 		submittedDoc: 'correct',
 		applicationDate: '2023-01-10 09:00:00',
 		approvalStatus: 'pending',

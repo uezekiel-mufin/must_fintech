@@ -17,18 +17,23 @@ const Table = () => {
 	const [pending, setPending] = useState(membersData.filter((item) => item.approvalStatus === 'pending').length);
 	const [selectedMembers, setSelectedMembers] = useState(membersData.filter((item) => item.selected === true));
 
+	// To change the endcount for the items on the page when itemsPerPage changes
 	useEffect(() => {
 		setEndCount(itemsPerPage);
 	}, [itemsPerPage]);
 
+
+// To change the data on the page when pagination buttons are clicked
 	useEffect(() => {
 		setPageItems(membersData.slice(startCount, endCount));
 	}, [startCount, endCount]);
 
+	// To set the initial data of the page on page render
 	useEffect(() => {
 		setData((prev) => membersData);
 	}, []);
 
+	// To update the data on the page when the current state of the application changes
 	useEffect(() => {
 		setPageItems(data.slice(startCount, endCount));
 	}, [data, startCount, endCount, itemsPerPage]);

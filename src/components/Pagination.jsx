@@ -2,6 +2,7 @@
 /* eslint-disable react/prop-types */
 import { MdKeyboardDoubleArrowLeft, MdKeyboardDoubleArrowRight, MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md';
 const Pagination = ({ data, setPageItems, membersData, startCount, endCount, setStartCount, setEndCount, itemsPerPage, pageItems, currentPage, setCurrentPage, numOfPages }) => {
+	// Function to handle the jump to the page number clicked
 	const handleJump = (page) => {
 		setStartCount((prevStartCount) => page * itemsPerPage - itemsPerPage);
 		setEndCount((prevEndCount) => page * itemsPerPage);
@@ -9,6 +10,7 @@ const Pagination = ({ data, setPageItems, membersData, startCount, endCount, set
 		setCurrentPage(page);
 	};
 
+	// Function to handle the next page button
 	const handleNext = () => {
 		console.log(data);
 		if (currentPage === numOfPages) {
@@ -20,6 +22,7 @@ const Pagination = ({ data, setPageItems, membersData, startCount, endCount, set
 		setCurrentPage((prevCurrentPage) => prevCurrentPage + 1);
 	};
 
+	// Function to handle the previous page button
 	const handlePrev = () => {
 		if (currentPage === 1) {
 			return;
@@ -30,6 +33,7 @@ const Pagination = ({ data, setPageItems, membersData, startCount, endCount, set
 		setCurrentPage((prevCurrentPage) => prevCurrentPage - 1);
 	};
 
+	// Function to handle the double next jump button
 	const handleDoubleNextJump = () => {
 		if (currentPage + 1 > numOfPages) {
 			return;
@@ -40,6 +44,7 @@ const Pagination = ({ data, setPageItems, membersData, startCount, endCount, set
 		setCurrentPage(numOfPages);
 	};
 
+	// Function to handle the double previous jump button
 	const handleDoublePrevJump = () => {
 		if (currentPage - 1 < 1) {
 			return;
